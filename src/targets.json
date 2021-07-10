@@ -1,0 +1,8 @@
+{
+  "development":{
+    "url": "",
+    "appId": ""
+  },
+  "staging":{},
+  "production":{}
+}
