@@ -1,0 +1,16 @@
+[
+  {
+    "id": "0",
+    "email": "user@example.com",
+    "password": "qwerty123",
+    "accessRules": {
+      "static": [
+        "devices",
+        "events",
+        "events:acknowledge"
+      ],
+      "dynamic": []
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5OTkiLCJzdWJ0eXBlIjoiZXhwZXJpZW5jZVVzZXIiLCJhcHAiOiI5OTkiLCJpYXQiOjE2MTAwMzY2NzMsImV4cCI6MzYxMDAzNjY3MywiaXNzIjoiTG9zYW50RXhwZXJpZW5jZSJ9.DS6u1BOi_97RehDaFYnhqlC2C4SuLlWBNGJWNIZJSMg"
+  }
+]

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import WithProviders from './WithProviders';
+import MockHandlersDisplay from './components/MockHandlersDisplay';
+
 
 if (process.env.REACT_APP_MOCK_API) {
   const { worker } = require('./mocks/browser.js');
@@ -11,7 +14,10 @@ if (process.env.REACT_APP_MOCK_API) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <WithProviders>
+      <MockHandlersDisplay />
+      <App />
+    </WithProviders>
   </React.StrictMode>,
   document.getElementById('root')
 );

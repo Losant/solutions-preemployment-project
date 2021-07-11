@@ -1,51 +1,34 @@
-import React, { Component } from 'react';
-import Status from './components/Status/Status';
-import targets from './targets.json';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import TopNavigation from './components/TopNavigation';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import useUserData from './services/UserData/useUserData';
 
-class App extends Component {
+const App = () => {
 
-  getTargetsConfig() {
-    const dev = targets.development;
+  const [userData] = useUserData();
 
-    return {
-      mockAPI: process.env.REACT_APP_MOCK_API,
-      target: process.env.REACT_APP_TARGET,
-      developmentURL: dev.url,
-      developmentAppId: dev.appId
-    };
-  }
-
-  render() {
-
-    const {
-      mockAPI,
-      target,
-      developmentURL,
-      developmentAppId
-    } = this.getTargetsConfig();
-
+  if (!userData.isLoggedIn) {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Losant Solutions</h2>
-          <ul className="App-intro">
-            <li> Please run <code>losant configure</code> in the "build" directory if you haven't yet.</li>
-            <li> Target env: { target }</li>
-            <li> Development URL: { developmentURL ? developmentURL : 'Please set in ./targets.js' }</li>
-            { developmentURL && (
-              <li>Development URL <Status /> { mockAPI ? '(mocked)' : '(not mocked)'}</li>
-            )}
-            <li>Development App ID: { developmentAppId ? developmentAppId : 'Please set in ./targets.js' }</li>
-
-          </ul>
-
-        </div>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route component={Login} />
+        </Switch>
+      </BrowserRouter>
     );
   }
-}
+
+  return (
+    <div className="App">
+      <TopNavigation />
+      <BrowserRouter>
+        <Switch>
+          <Route component={Home} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
+};
 
 export default App;
