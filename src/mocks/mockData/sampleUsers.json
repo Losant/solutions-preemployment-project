@@ -1,7 +1,7 @@
 [
   {
     "id": "0",
-    "email": "user@example.com",
+    "email": "test.user@example.com",
     "password": "qwerty123",
     "accessRules": {
       "static": [
