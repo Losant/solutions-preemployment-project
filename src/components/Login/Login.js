@@ -11,18 +11,21 @@ const Login = () => {
 
   const handleSubmit = (e) => {
 
-    // TODO: We should validate client-side for a valid email, and for both
-    // email and password being entered at all, before sending to the server
-
     e.preventDefault();
 
-    /* TODO: Only dispatch login after successful API response,
-    and use response body instead hard-coded values
+    /* TODO: Only log the user in after a successful API response,
+    and use the response body instead of the hard-coded values
 
     The endpoint is `${targets[process.env.REACT_APP_TARGET].url}/login`
 
-    A mock handler will respond appropriately if server started in mock mode,
+    An existing mock API handler will respond appropriately to this endpoint
+    if the server is started in mock mode,
     i.e. "yarn run start-mock"
+
+    Request: POST /login  Body: { "email": "...", "password": "..."}
+    Response:
+      Status code: 400 if missing email or password, 401 if invalid email password, 200 if valid
+      Body: { "id": "...", "token": "...", "accessRules": { "static": [...], "dynamic": [...]} }
     */
 
     userDataDispatch({
