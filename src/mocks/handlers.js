@@ -5,7 +5,7 @@ import sampleUsers from './mockData/sampleUsers.json';
 const urlBase = targets[process.env.REACT_APP_TARGET].url;
 
 export const handlers = [
-  rest.post(`${urlBase}/api/login`, (req, res, ctx) => {
+  rest.post(`${urlBase}/login`, (req, res, ctx) => {
     const {
       email, password
     } = req.body;
