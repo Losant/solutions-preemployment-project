@@ -1,26 +1,36 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+
+import React, { useState } from 'react';
 import useUserData from '../../services/UserData/useUserData';
 import { login } from '../../services/UserData/types';
 import { Grid } from '@material-ui/core';
-// import targets from '../../targets.json'
+import targets from '../../targets.json';
 
 const Login = () => {
 
-  // eslint-disable-next-line no-unused-vars
-  const [userData, userDataDispatch] = useUserData();
+
+  const [userData, userDataDispatch] = useUserData(); // used to notify the rest of the application of success
+  const [email, setEmail] = useState(''); // email that the user types in the form
+  const [password, setPassword] = useState(''); // password that the user types in the form
 
   const handleSubmit = (e) => {
 
     e.preventDefault();
 
-    /* TODO: Only log the user in after a successful API response,
-    and use the response body instead of the hard-coded values
+    /* TODO:
 
-    The endpoint is `${targets[process.env.REACT_APP_TARGET].url}/login`
+    * Make an AJAX request using a method or library of your choice.
+    * Only send the login dispatch (below) after a successful API response.
+    * Have extra time? Add an enhancement:
+      * Use the response body instead of the hard-coded values for accessRules.
+      * Validate the input before sending
+      * Show the user an error if their password is wrong
+      * etc.
 
-    An existing mock API handler will respond appropriately to this endpoint
-    if the server is started in mock mode,
-    i.e. "yarn run start-mock"
+    Notes:
+    * The endpoint is `${targets[process.env.REACT_APP_TARGET].url}/login`
+    * An existing mock server will respond appropriately if "yarn run start-mock" is used
+    * Valid user: "test.user@example.com" / "qwerty123",
 
     Request: POST /login  Body: { "email": "...", "password": "..."}
     Response:
@@ -28,6 +38,7 @@ const Login = () => {
       Body: { "id": "...", "token": "...", "accessRules": { "static": [...], "dynamic": [...]} }
     */
 
+    // send only if 200
     userDataDispatch({
       type: login,
       payload: {
@@ -35,6 +46,14 @@ const Login = () => {
         accessRules: { static: [], dynamic: [] }
       }
     });
+  };
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.currentTarget.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.currentTarget.value);
   };
 
   return (
@@ -49,11 +68,11 @@ const Login = () => {
         <form>
           <div>
             <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="email" />
+            <input type="text" name="email" id="email" value={email} onChange={handleChangeEmail} />
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
+            <input type="password" name="password" id="password" value={password} onChange={handleChangePassword} />
           </div>
           <div>
             <input type="submit" onClick={handleSubmit} />
