@@ -1,5 +1,14 @@
 # Getting Started
 
+## Prerequisites
+
+* Node [install](https://nodejs.org/en/download/)
+* Yarn `npm install -g yarn` 
+
+## Setup
+
+Run `yarn` to install dependencies
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -12,3 +21,5 @@ In the project directory, you can run:
   "coverage": Create jest coverage report
   "eject": Eject the webpack config (not reversible)
 ```
+
+e.g. `yarn run start-mock` 
